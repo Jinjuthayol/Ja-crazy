@@ -1,46 +1,53 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm> // For sorting
 using namespace std;
+
 #include "doctor.h"
 #include "patient.h"
 #include "bst.h"
-
+#include "urgency.h"
 
 int main() {
-    cout << "Welcome to hospital management game!" << endl;
-    cout << "Here are the instructions" << endl;
+    cout << "Welcome to the hospital management game!" << endl;
+    cout << "Here are the instructions:" << endl;
 
-    Doctor Smith("Smith","Emergency Room");
+    // Create Doctor objects
+    Doctor Smith("Smith", "Emergency Room");
+    Doctor Johnson("Johnson", "Emergency Room");
+    Doctor Williams("Williams", "Obstetric-Gynecology");
+    Doctor Jones("Jones", "Obstetric-Gynecology");
+    Doctor Brown("Brown", "Pediatrics");
+    Doctor Davis("Davis", "Pediatrics");
+    Doctor Miller("Miller", "Medicine");
+    Doctor Wilson("Wilson", "Medicine");
+    Doctor Moore("Moore", "Ophthalmology");
+    Doctor Taylor("Taylor", "Ophthalmology");
 
-    cout << "Emergency Room" << endl;
-    cout << "Dr. Smith" << endl;
-    cout << "Dr. Johnson" << endl;
-    cout << "Obstetric-Gynecology" << endl;
-    cout << "Dr. Williams" << endl;
-    cout << "Dr. Jones" << endl;
-    cout << "Pediatrics" << endl;
-    cout << "Dr. Brown" << endl;
-    cout << "Dr. Davis" << endl;
-    cout << "Medicine" << endl;
-    cout << "Dr. Miller" << endl;
-    cout << "Dr. Wilson" << endl;
-    cout << "Ophthalmology" << endl;
-    cout << "Dr. Moore" << endl;
-    cout << "Dr. Taylor" << endl;
+    // Add doctors to a vector for easy access
+    vector<Doctor> doctors = {Smith, Johnson, Williams, Jones, Brown,
+                              Davis, Miller, Wilson, Moore, Taylor};
 
-    cout << "Level 1 Minimal" << endl;
-    cout << "Level 2 Low" << endl;
-    cout << "Level 3 Moderate" << endl;
-    cout << "Level 4 Fatal" << endl;
+    cout << "Level 1 Fatal" << endl;
+    cout << "Level 2 Moderate" << endl;
+    cout << "Level 3 Low" << endl;
+    cout << "Level 4 Minimal" << endl;
 
-    vector<Patient> patients = {{"Jean", 70, 'F', "Unconscious"},{"KJ", 24, 'F', "Acute respiratory"},
-    {"Xandra", 6, 'F', "Stomachache"},{"Best", 17, 'M', "Shoulder dislocation"},{"New", 30, 'M', "Heart attack"},
-    {"Pat", 42, 'M', "Appendicitis"},{"Heart", 39, 'M', "Seasonal influenza"},{"Hong", 54, 'F', "Hemiparesis"},
-    {"Jill", 66, 'F', "Corneal Ulcer"},{"Trin", 49, 'M', "Ankle sprai"}};
+    // List of patients
+    vector<Patient> patients = {
+        {"Jean", 70, 'F', "Unconscious"}, {"KJ", 24, 'F', "Acute respiratory"}};/*,
+        {"Xandra", 6, 'F', "Stomachache"}, {"Best", 17, 'M', "Shoulder dislocation"},
+        {"New", 30, 'M', "Heart attack"}, {"Pat", 42, 'M', "Appendicitis"},
+        {"Heart", 39, 'M', "Seasonal influenza"}, {"Hong", 54, 'F', "Hemiparesis"},
+        {"Jill", 66, 'F', "Corneal Ulcer"}, {"Trin", 49, 'M', "Ankle sprain"}
+    };*/
 
+    // Binary Search Tree for storing urgency levels
     BST tree;
+    int points = 0;
 
+    // Process each patient
     for (const auto& patient : patients) {
         cout << "New Patient Alert: " << patient.name << " (" << patient.symptoms << ")" << endl;
         string doctorname;
@@ -50,21 +57,35 @@ int main() {
         cout << "How severe do you think it is? (Level 1/2/3/4)" << endl;
         cin >> urgencylevel;
 
-        // Assume we have some doctors defined
-        Doctor doc(doctorname);
-        doc.addPatient(patient);
 
-        // Create urgency and insert into BST
-        Urgency urgency(urgencylevel, doctorname, &doc);
-        tree.insert(&urgency);
+
+        // Find the doctor
+        auto it = find_if(doctors.begin(), doctors.end(), [&](const Doctor& doc) {
+            return doc.getName() == doctorname;
+        });
+
+        // If doctor exists and urgency level is valid
+        if (it != doctors.end() && urgencylevel >= 1 && urgencylevel <= 4) {
+            points++; // Increment points for correct match
+
+            // Add patient to doctor's list
+            it->addPatient(patient, urgencylevel);
+
+            // Create urgency and insert into BST
+            Urgency urgency(urgencylevel, doctorname, &(*it));
+            tree.insert(&urgency);
+        }
     }
 
-    // Print all patients sorted by urgency
-    tree.printPatientsByUrgency();
-   
+    // Print all patients sorted by urgency for each doctor
+    for (const auto& doctor : doctors) {
+        if(!doctor.isEmpty())
+        cout << "Patients for Doctor " << doctor.getName() << ":" << endl;
+        doctor.printPatientsByUrgency();
+    }
 
+    // Display final points
+    cout << "You saved " << points << " patients today!" << endl;
 
     return 0;
 }
-
-

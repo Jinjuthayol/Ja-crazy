@@ -1,36 +1,43 @@
 #ifndef doctor_h
 #define doctor_h
 
+#include <iostream>
 #include <string>
 #include <vector>
-using namespace std;
 #include "patient.h"
 
+using namespace std;
 
 class Doctor {
 private:
     string name;
     string specialization;
-    vector<Patient> patients;
+    vector<pair<int, Patient>> patientsByUrgency; // Using pair to store urgency level and patient
 
 public:
-    Doctor(string n) : name(n), specialization("") {}
-    void addPatient(const Patient& patient) {
-        patients.push_back(patient);
+    Doctor(string n, string spec) : name(n), specialization(spec) {}
+
+    string getName() const {
+        return name;
     }
-    void printPatients() const {
-        for (const auto& patient : patients) {
-            cout << "Patient: " << patient.name << " (" << patient.symptoms << ")" << endl;
+
+    void addPatient(const Patient& patient, int urgencyLevel) {
+        patientsByUrgency.push_back(make_pair(urgencyLevel, patient));
+        // Sort patients by urgency level (ascending)
+        sort(patientsByUrgency.begin(), patientsByUrgency.end(), [](const auto& a, const auto& b) {
+            return a.first < b.first;
+        });
+    }
+
+    void printPatientsByUrgency() const {
+        for (const auto& pair : patientsByUrgency) {
+            cout << "Urgency Level " << pair.first << ": ";
+            cout << "Patient: " << pair.second.name << " (" << pair.second.symptoms << ")" << endl;
         }
     }
-};
-class Urgency {
-public:
-    int urgencyLevel;
-    string doctorName;
-    Doctor *doctor;
-
-    Urgency(int level, string name, Doctor *doc) : urgencyLevel(level), doctorName(name), doctor(doc) {}
+    bool isEmpty() const {
+        return patientsByUrgency.empty();
+    }
 };
 
-#endif 
+#endif
