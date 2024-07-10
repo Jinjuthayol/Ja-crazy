@@ -32,7 +32,10 @@ int main() {
     cout << "Level 3 Moderate" << endl;
     cout << "Level 4 Fatal" << endl;
 
-    vector<Patient> patients = {{"John Doe", 30, 'M', "Headache"}, {"Jane Smith", 25, 'F', "Fever"}};
+    vector<Patient> patients = {{"Jean", 70, 'F', "Unconscious"},{"KJ", 24, 'F', "Acute respiratory"},
+    {"Xandra", 6, 'F', "Stomachache"},{"Best", 17, 'M', "Shoulder dislocation"},{"New", 30, 'M', "Heart attack"},
+    {"Pat", 42, 'M', "Appendicitis"},{"Heart", 39, 'M', "Seasonal influenza"},{"Hong", 54, 'F', "Hemiparesis"},
+    {"Jill", 66, 'F', "Corneal Ulcer"},{"Trin", 49, 'M', "Ankle sprai"}};
 
     BST tree;
 
@@ -59,3 +62,5 @@ int main() {
 
     return 0;
 }
+
+
