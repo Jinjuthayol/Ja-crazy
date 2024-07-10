@@ -32,7 +32,7 @@ int main() {
     cout << "Level 3 Moderate" << endl;
     cout << "Level 4 Fatal" << endl;
 
-    vector<Patient> patients = {{"John Doe", "Headache"}, {"Jane Smith", "Fever"}};
+    vector<Patient> patients = {{"John Doe", 30, 'M', "Headache"}, {"Jane Smith", 25, 'F', "Fever"}};
 
     BST tree;
 
