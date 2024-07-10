@@ -1,26 +1,36 @@
 #ifndef doctor_h
 #define doctor_h
 
+#include <string>
+#include <vector>
 using namespace std;
+#include "patient.h"
 
 
-class doctor{
-    private: 
-        string name;
-        string specialization;
-        // float shift;
+class Doctor {
+private:
+    string name;
+    string specialization;
+    vector<Patient> patients;
 
-    public:
-        doctor();
-        addPatient(const Patient& patient)
-    
-};
-doctor::doctor(string n,string spec){
-    name=n;
-    specialization=spec;
-
-}
- void patient::addPatient(const Patient& patient) {
+public:
+    Doctor(string n) : name(n), specialization("") {}
+    void addPatient(const Patient& patient) {
         patients.push_back(patient);
-}
+    }
+    void printPatients() const {
+        for (const auto& patient : patients) {
+            cout << "Patient: " << patient.name << " (" << patient.symptoms << ")" << endl;
+        }
+    }
+};
+class Urgency {
+public:
+    int urgencyLevel;
+    string doctorName;
+    Doctor *doctor;
 
+    Urgency(int level, string name, Doctor *doc) : urgencyLevel(level), doctorName(name), doctor(doc) {}
+};
+
+#endif 

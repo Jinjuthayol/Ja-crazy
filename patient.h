@@ -1,31 +1,14 @@
 #ifndef patient_h
 #define patient_h
 
+#include <string>
 using namespace std;
 
-
-class patient{
-    private: 
-        string name;
-        char sex;
-        int age;
-        char medCon;
-        // char medHis;
-        // string alergies;
-        // char insurance;
-
-    public:
-        //bool alive();
-        string symptoms();
-        patient(string name,string symptoms);
-        
+class Patient {
+public:
+    string name;
+    string symptoms;
+    Patient(string n, string s) : name(n), symptoms(s) {}
 };
-patient:: patient(string n, int a, char s, string symp){
-    name=n; 
-    age=a;
-    sex=s;
-    symptoms=symp; 
-}
 
-
-
+#endif 

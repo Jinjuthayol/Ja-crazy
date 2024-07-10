@@ -7,35 +7,6 @@ using namespace std;
 #include "bst.h"
 
 
-
-class Doctor {
-public:
-    string name;
-    vector<string> patients;
-
-    Doctor(string n) : name(n) {}
-
-    void addPatient(string patientName) {
-        patients.push_back(patientName);
-    }
-
-    void printPatients() const {
-        for (const string &patient : patients) {
-            cout << patient << endl;
-        }
-    }
-};
-
-class Urgency {
-public:
-    int urgencyLevel;
-    string doctorName;
-    Doctor *doctor;
-
-    Urgency(int level, string name, Doctor *doc) : urgencyLevel(level), doctorName(name), doctor(doc) {}
-};
-
-
 int main() {
     cout << "Welcome to hospital management game!" << endl;
     cout << "Here are the instructions" << endl;
@@ -61,8 +32,9 @@ int main() {
     cout << "Level 3 Moderate" << endl;
     cout << "Level 4 Fatal" << endl;
 
-
     vector<Patient> patients = {{"John Doe", "Headache"}, {"Jane Smith", "Fever"}};
+
+    BST tree;
 
     for (const auto& patient : patients) {
         cout << "New Patient Alert: " << patient.name << " (" << patient.symptoms << ")" << endl;
@@ -75,18 +47,15 @@ int main() {
 
         // Assume we have some doctors defined
         Doctor doc(doctorname);
-        doc.addPatient(patient.name);
+        doc.addPatient(patient);
 
         // Create urgency and insert into BST
         Urgency urgency(urgencylevel, doctorname, &doc);
-        BST tree;
         tree.insert(&urgency);
     }
 
     // Print all patients sorted by urgency
-    BST tree;
     tree.printPatientsByUrgency();
 
     return 0;
 }
-
