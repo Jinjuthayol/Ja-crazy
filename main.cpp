@@ -11,6 +11,8 @@ int main() {
     cout << "Welcome to hospital management game!" << endl;
     cout << "Here are the instructions" << endl;
 
+    Doctor Smith("Smith","Emergency Room");
+
     cout << "Emergency Room" << endl;
     cout << "Dr. Smith" << endl;
     cout << "Dr. Johnson" << endl;
@@ -59,6 +61,8 @@ int main() {
 
     // Print all patients sorted by urgency
     tree.printPatientsByUrgency();
+   
+
 
     return 0;
 }
