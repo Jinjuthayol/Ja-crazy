@@ -50,8 +50,8 @@ public:
     void printPatientsByUrgency() const {
         PatientNode* current = head;
         while (current) {
-            cout << "Urgency Level " << current->urgencyLevel << " Patient: ";
-            cout <<current->patient.name << " (" << current->patient.symptoms << ")" << endl;
+            cout << setfill(' ')<<setw(16)<<current->urgencyLevel;
+            cout << current->patient.name << " (" << current->patient.symptoms << ")" << endl;
             current = current->next;
         }
     }
@@ -141,7 +141,9 @@ public:
         Node* temp = head;
         while (temp) {
             if (!temp->doctor->isEmpty()) {
-                cout << "Patients for Doctor " << temp->doctor->getName() << ":" << endl;
+                cout << "Doctor " << temp->doctor->getName() << "'s patients chart:" << endl;
+                cout << left << setw(15) << "Urgency Level" << " " << left << "Name (Symptoms)" << endl;
+                cout << string(40, '-') << endl;
                 temp->doctor->printPatientsByUrgency();
                 cout << endl;
             }

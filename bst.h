@@ -30,7 +30,7 @@ private:
         return node;
     }
 
-    void inorder(TreeNode* node) const {
+    /*void inorder(TreeNode* node) const {
         if (node != nullptr) {
             inorder(node->left);
             cout << "Urgency Level " << node->urgency->urgencyLevel << " for Doctor "
@@ -39,7 +39,7 @@ private:
             cout << endl;
             inorder(node->right);
         }
-    }
+    }*/
 
 public:
     BST() : root(nullptr) {}
@@ -48,9 +48,9 @@ public:
         root = insert(root, urgency);
     }
 
-    void printPatientsByUrgency() const {
+    /*void printPatientsByUrgency() const {
         inorder(root);
-    }
+    }*/
 };
 
 #endif

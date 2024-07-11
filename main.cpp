@@ -18,15 +18,13 @@ void scripting(const string& text, int delay = 50) {
     //cout << std::endl;
 }
 void pressentertocontinue() {
-    //cout << "Press Enter to continue..." << flush;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    //cin.get();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');  
 }
 int main() {
     int menu;
     LL doctorList;
 
-    // Create Doctor objects
+    // Create Doctors
     Doctor Smith("Smith", "Surgery");
     Doctor Johnson("Johnson", "Surgery");
     Doctor Williams("Williams", "Obstetric-Gynecology");
@@ -75,21 +73,21 @@ int main() {
 
                 scripting("Now you are ready to start the game!!");
                 cout<<endl;
-                pressentertocontinue();
+                
 
                 // Predefined list of patients
                 Patient patients[] = {
-                    {"Jean", 70, 'F', "Cholecystitis"}, //2
-                    {"KJ", 48, 'F', "Diabetic Ketoacidosis"}};/*,//2
-                    {"Xandra", 6, 'F', "Bronchiolitis"},//3
-                    {"Best", 57, 'M', "Retinal Detachment"},//1
-                    {"New", 62, 'M', "Heart attack"}, //1
-                    {"Pat", 42, 'M', "Appendicitis"}, //1
-                    {"Heart", 3, 'M', "Acute Otitis Media"}, //4
-                    {"Hong", 30, 'F', "Ectopic Pregnancy"},//1
-                    {"Jill", 66, 'F', "Ovarian Cyst"}, //3
-                    {"Trin", 19, 'M', "Conjunctivitis"} //4
-                };*/
+                    {"Jean", 70, 'F', "Cholecystitis"},
+                    {"KJ", 48, 'F', "Diabetic Ketoacidosis"},
+                    {"Xandra", 6, 'F', "Bronchiolitis"},
+                    {"Best", 57, 'M', "Retinal Detachment"},
+                    {"New", 62, 'M', "Heart attack"}, 
+                    {"Pat", 42, 'M', "Appendicitis"}, 
+                    {"Heart", 3, 'M', "Acute Otitis Media"}, 
+                    {"Hong", 30, 'F', "Ectopic Pregnancy"},
+                    {"Jill", 66, 'F', "Ovarian Cyst"}, 
+                    {"Trin", 19, 'M', "Conjunctivitis"} 
+                };
 
                 // Binary Search Tree for storing urgency levels
                 BST tree;
@@ -97,6 +95,7 @@ int main() {
 
                 // Process each patient
                 for (const auto& patient : patients) {
+                    //pressentertocontinue();
                     this_thread::sleep_for(chrono::milliseconds(2500));
                     cout << "New Patient Alert!"<<endl;
                     this_thread::sleep_for(chrono::milliseconds(1000));
@@ -166,24 +165,24 @@ int main() {
                     if(!doctorList.hasPatients()) {
                         scripting("There are no patients record yet.\n");
                         cout<<endl;
-                        pressentertocontinue();
                     }
 
                     else{
-                        scripting("Let's check the status of our patients so far.\nby looking at the charts of doctors' patients.\n");
+                        scripting("Let's check the status of our patients so far by looking at the charts of doctors' patients.\n");
                         cout<<endl;
 
                         // Print all patients sorted by urgency for each doctor
                         doctorList.printPatientsByUrgency();
                         if(correctanswer) scripting("You're doing an excellent job, Hospital Manager! Keep going and save more lives.\n");
                         pressentertocontinue();
+                        cout<<endl;
                     }
         
                 }
 
-                pressentertocontinue();
+                //pressentertocontinue();
                 // Display final points
-                scripting("You saved ");
+                scripting("Your first day here is done. You saved ");
                 if (points==0) scripting("no patient today, unfortunately.\n");
                 else {
                     cout<<points;
@@ -191,9 +190,7 @@ int main() {
                     else scripting(" patient today!\n");
                 }
 
-            scripting("Goodbye, Hospital Manager! Thanks for all your hard work. The hospital is in better shape because of you!\n");
+            scripting("Goodbye, Hospital Manager. Thanks for all your hard work. The hospital is in better shape because of you!\n");
   
-
     return 0;
 }
-
