@@ -10,7 +10,7 @@ public:
     int age;
     char sex;
     string symptoms;
-    Patient(string n, int a,char sx,string s): name(n), age(a), sex(sx), symptoms(s) {}
+    Patient(string n, int a, char sx, string s) : name(n), age(a), sex(sx), symptoms(s) {}
 };
 
-#endif 
+#endif
