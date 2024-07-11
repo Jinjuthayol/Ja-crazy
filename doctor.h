@@ -1,5 +1,5 @@
-#ifndef doctor_h
-#define doctor_h
+#ifndef DOCTOR_H
+#define DOCTOR_H
 
 #include <iostream>
 #include <iomanip>
@@ -39,7 +39,7 @@ public:
             head = newNode;
         } else {
             PatientNode* current = head;
-            while (current->next && current->next->urgencyLevel >= urgencyLevel) {
+            while (current->next && current->next->urgencyLevel <= urgencyLevel) {
                 current = current->next;
             }
             newNode->next = current->next;
@@ -50,8 +50,8 @@ public:
     void printPatientsByUrgency() const {
         PatientNode* current = head;
         while (current) {
-            cout << setfill(' ')<<setw(16)<<current->urgencyLevel;
-            cout << current->patient.name << " (" << current->patient.symptoms << ")" << endl;
+            cout << setw(8) << setfill(' ') << right << current->urgencyLevel<<setw(8)<<setfill(' ')<<right
+                 << " " << current->patient.name << " (" << current->patient.symptoms << ")" << endl;
             current = current->next;
         }
     }
@@ -104,16 +104,16 @@ public:
     }
 
     void printList() const {
-    Node* temp = head;
-    cout << left << setw(20) << "Name" << " " << left << setw(30) << "Specialization" << endl;
-    cout << string(51, '-') << endl; 
+        Node* temp = head;
+        cout << left << setw(20) << "Name" << " " << left << setw(30) << "Specialization" << endl;
+        cout << string(51, '-') << endl;
 
-    while (temp) {
-        cout << left << setw(20) << temp->doctor->getName()
-             << " " << left << setw(20) << temp->doctor->getSpecialization() << endl;
-        temp = temp->next;
+        while (temp) {
+            cout << left << setw(20) << temp->doctor->getName()
+                 << " " << left << setw(20) << temp->doctor->getSpecialization() << endl;
+            temp = temp->next;
+        }
     }
-}
 
     Doctor* findDoctor(const string& doctorName) const {
         Node* temp = head;
@@ -141,7 +141,7 @@ public:
         Node* temp = head;
         while (temp) {
             if (!temp->doctor->isEmpty()) {
-                cout << "Doctor " << temp->doctor->getName() << "'s patients chart" << endl;
+                cout << "Doctor " << temp->doctor->getName() << "'s patients chart:" << endl;
                 cout << left << setw(15) << "Urgency Level" << " " << left << "Name (Symptoms)" << endl;
                 cout << string(40, '-') << endl;
                 temp->doctor->printPatientsByUrgency();
