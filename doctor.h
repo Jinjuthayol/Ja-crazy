@@ -141,7 +141,7 @@ public:
         Node* temp = head;
         while (temp) {
             if (!temp->doctor->isEmpty()) {
-                cout << "Doctor " << temp->doctor->getName() << "'s patients chart:" << endl;
+                cout << "Doctor " << temp->doctor->getName() << "'s patients chart" << endl;
                 cout << left << setw(15) << "Urgency Level" << " " << left << "Name (Symptoms)" << endl;
                 cout << string(40, '-') << endl;
                 temp->doctor->printPatientsByUrgency();
