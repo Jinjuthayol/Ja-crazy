@@ -59,10 +59,9 @@ int main() {
 
         switch(menu) {
             case 1: {
-                scripting("Here are the instructions:");
-                cout<<endl;
-                cout<<"Welcome once again! As the new hospital manager, your task is to ensure patients are attended to by the right doctors with the appropriate urgency."<<endl;
-
+                scripting("Welcome once again! As the new hospital manager, your task is to ensure patients are attended to by the right doctors with the appropriate urgency.");
+                scripting("Fantastic! Here are your main tasks:");
+                
                 // Print doctor list
                 doctorList.printList();
 
