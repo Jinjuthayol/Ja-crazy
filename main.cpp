@@ -10,15 +10,18 @@
 
 using namespace std;
 
-void scripting(const std::string& text, int delay = 50) {
+void scripting(const string& text, int delay = 50) {
     for (char c : text) {
-        std::cout << c << std::flush;
-        std::this_thread::sleep_for(std::chrono::milliseconds(delay));
+        cout << c << flush;
+        this_thread::sleep_for(chrono::milliseconds(delay));
     }
-    std::cout << std::endl;
+    //cout << std::endl;
+}
+void pressentertocontinue() {
+    //cout << "Press Enter to continue..." << std::flush;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 int main() {
-    cout << "Welcome to the hospital management mini game!" << endl;
     int menu;
     LL doctorList;
 
@@ -46,60 +49,71 @@ int main() {
     doctorList.addDoctor(&Moore);
     doctorList.addDoctor(&Taylor);
 
-    
-
-    do {
-        cout << "Main Menu:" << endl;
-        cout << "1. Instructions" << endl;
-        cout << "2. Start The Game" << endl;
-        cout << "3. Exit Game" << endl;
-        cout << "Enter your choice: ";
-        cin >> menu;
-        cout << endl;
-
-        switch(menu) {
-            case 1: {
-                scripting("Welcome once again! As the new hospital manager, your task is to ensure patients are attended to by the right doctors with the appropriate urgency.");
-                scripting("Fantastic! Here are your main tasks:");
+ 
+                scripting("Welcome to the hospital management mini game!\nAs the new hospital manager, your task is to ensure patients are attended to by the right doctors with the appropriate urgency.\n");
+                scripting("ARE YOU READY??");
+                pressentertocontinue();
+                scripting("First, Let's review the doctors information, they are the superheroes of our hospital!\n");
                 
                 // Print doctor list
                 doctorList.printList();
+                pressentertocontinue();
 
-                cout << "Level 1: Fatal" << endl;
-                cout << "Level 2: Moderate" << endl;
-                cout << "Level 3: Low" << endl;
-                cout << "Level 4: Minimal" << endl;
+                scripting("\nAnd these are the urgency level:\n");
 
-                break;
-            }
-            
-            case 2: {
+                cout << "Level 1: Fatal (Immediate attention needed)" << endl;
+                cout << "Level 2: Moderate (Needs attention soon)" << endl;
+                cout << "Level 3: Low (Can wait for a bit)" << endl;
+                cout << "Level 4: Minimal (Routine check-up)\n" << endl;
+
+                pressentertocontinue();
+                scripting("Patients will arrive with symptoms and you should decide which doctor \nthey should see according to their specialization and the urgency of their condition.\n");
+
+                scripting("Now you are ready to start the game!!");
+                cout<<endl;
+                pressentertocontinue();
+
                 // Predefined list of patients
                 Patient patients[] = {
-                    {"Jean", 70, 'F', "Unconscious"}, {"KJ", 24, 'F', "Acute respiratory"}};/*,
-                    {"Xandra", 6, 'F', "Stomachache"}, {"Best", 17, 'M', "Shoulder dislocation"},
-                    {"New", 30, 'M', "Heart attack"}, {"Pat", 42, 'M', "Appendicitis"},
-                    {"Heart", 39, 'M', "Seasonal influenza"}, {"Hong", 54, 'F', "Hemiparesis"},
-                    {"Jill", 66, 'F', "Corneal Ulcer"}, {"Trin", 49, 'M', "Ankle sprain"}
-                };
-*/
+                    {"Jean", 70, 'F', "Cholecystitis"}, //2
+                    {"KJ", 48, 'F', "Diabetic Ketoacidosis"}};/*,//2
+                    {"Xandra", 6, 'F', "Bronchiolitis"},//3
+                    {"Best", 57, 'M', "Retinal Detachment"},//1
+                    {"New", 62, 'M', "Heart attack"}, //1
+                    {"Pat", 42, 'M', "Appendicitis"}, //1
+                    {"Heart", 3, 'M', "Acute Otitis Media"}, //4
+                    {"Hong", 30, 'F', "Ectopic Pregnancy"},//1
+                    {"Jill", 66, 'F', "Ovarian Cyst"}, //3
+                    {"Trin", 19, 'M', "Conjunctivitis"} //4
+                };*/
+
                 // Binary Search Tree for storing urgency levels
                 BST tree;
                 int points = 0;
 
                 // Process each patient
                 for (const auto& patient : patients) {
-                    cout << "New Patient Alert: " << patient.name << " (" << patient.symptoms << ")" << endl;
+                    std::this_thread::sleep_for(std::chrono::milliseconds(2500));
+                    cout << "New Patient Alert!"<<endl;
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                    cout<<patient.name << ", "<< patient.age << " years old, " << patient.sex << ",";
+                    cout<<" comes to the hospital with " << patient.symptoms <<" symptoms";
+                    pressentertocontinue();
                     string doctorName;
                     int urgencyLevel;
 
                     // Input doctor name
-                    cout << "Which doctor should this patient go to?" << endl;
+                    pressentertocontinue();
+                    cout<<endl;
+                    scripting("Which doctor should this patient go to?\n");
                     cin >> doctorName;
 
                     // Input urgency level
-                    cout << "How severe do you think it is? (Level 1/2/3/4)" << endl;
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                    cout<<endl;
+                    scripting("How severe do you think it is? (Level 1/2/3/4)?\n");
                     cin >> urgencyLevel;
+                    cout<<endl;
 
                     bool correctanswer = false;
 
@@ -141,27 +155,32 @@ int main() {
                             points++; // Increment points for correct match
                         }
                     }
+                    else scripting("This doctor couldn't be found in the record this hospital.\n");
+
+                    scripting("Let's check the status of our patients so far.\nLooking at the list(s) of doctors patients\n");
+                    cout<<endl;
+
+                    // Print all patients sorted by urgency for each doctor
+                    doctorList.printPatientsByUrgency();
+                    if(correctanswer) scripting("You're doing an excellent job, Hospital Manager! Keep going and save more lives.\n");
+                    cout<<endl;
+                    pressentertocontinue();
+
                 }
 
-                // Print all patients sorted by urgency for each doctor
-                doctorList.printPatientsByUrgency();
-
+                
                 // Display final points
-                cout << "You saved " << points << " patients today!" << endl;
+                scripting("You saved ");
+                if (points==0) scripting("no patient today, unfortunately.\n");
+                else {
+                    cout<<points;
+                    if (points==1) scripting(" patient today!\n");
+                    else scripting(" patient today!\n");
+                }
 
-                break;
-            }
-
-            case 3:
-                cout << "Exiting the game. Goodbye!" << endl;
-                break;
-
-            default:
-                cout << "Invalid choice. Please enter 1, 2, or 3." << endl;
-                break;
-        }
-
-    } while (menu != 3);
+            scripting("Goodbye, Hospital Manager! Thanks for all your hard work. The hospital is in better shape because of you!\n");
+  
 
     return 0;
 }
+

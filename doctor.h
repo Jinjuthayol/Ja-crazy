@@ -33,7 +33,7 @@ public:
 
     void addPatient(const Patient& patient, int urgencyLevel) {
         PatientNode* newNode = new PatientNode(patient, urgencyLevel);
-        if (!head || urgencyLevel > head->urgencyLevel) {
+        if (!head || urgencyLevel < head->urgencyLevel) {
             newNode->next = head;
             head = newNode;
         } else {
@@ -49,8 +49,8 @@ public:
     void printPatientsByUrgency() const {
         PatientNode* current = head;
         while (current) {
-            cout << "Urgency Level " << current->urgencyLevel << ": ";
-            cout << "Patient: " << current->patient.name << " (" << current->patient.symptoms << ")" << endl;
+            cout << "Urgency Level " << current->urgencyLevel << " Patient: ";
+            cout <<current->patient.name << " (" << current->patient.symptoms << ")" << endl;
             current = current->next;
         }
     }
