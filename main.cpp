@@ -73,6 +73,7 @@ int main() {
 
                 scripting("Now you are ready to start the game!!");
                 cout<<endl;
+                pressentertocontinue();
                 
 
                 // Predefined list of patients
@@ -95,7 +96,6 @@ int main() {
 
                 // Process each patient
                 for (const auto& patient : patients) {
-                    //pressentertocontinue();
                     this_thread::sleep_for(chrono::milliseconds(2500));
                     cout << "New Patient Alert!"<<endl;
                     this_thread::sleep_for(chrono::milliseconds(1000));
@@ -106,7 +106,6 @@ int main() {
                     int urgencyLevel;
 
                     // Input doctor name
-                    pressentertocontinue();
                     cout<<endl;
                     scripting("Which doctor should this patient go to?\n");
                     cin >> doctorName;
@@ -117,7 +116,6 @@ int main() {
                     cout<<endl;
                     scripting("How severe do you think it is? (Level 1/2/3/4)?\n");
                     cin >> urgencyLevel;
-                    
                     cout<<endl;
 
                     bool correctanswer = false;
@@ -180,7 +178,6 @@ int main() {
         
                 }
 
-                //pressentertocontinue();
                 // Display final points
                 scripting("Your first day here is done. You saved ");
                 if (points==0) scripting("no patient today, unfortunately.\n");
