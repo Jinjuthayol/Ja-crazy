@@ -18,16 +18,17 @@ void scripting(const string& text, int delay = 50) {
     //cout << std::endl;
 }
 void pressentertocontinue() {
-    //cout << "Press Enter to continue..." << std::flush;
+    //cout << "Press Enter to continue..." << flush;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    //cin.get();
 }
 int main() {
     int menu;
     LL doctorList;
 
     // Create Doctor objects
-    Doctor Smith("Smith", "Emergency Room");
-    Doctor Johnson("Johnson", "Emergency Room");
+    Doctor Smith("Smith", "Surgery");
+    Doctor Johnson("Johnson", "Surgery");
     Doctor Williams("Williams", "Obstetric-Gynecology");
     Doctor Jones("Jones", "Obstetric-Gynecology");
     Doctor Brown("Brown", "Pediatrics");
@@ -107,12 +108,14 @@ int main() {
                     cout<<endl;
                     scripting("Which doctor should this patient go to?\n");
                     cin >> doctorName;
+                    
 
                     // Input urgency level
                     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                     cout<<endl;
                     scripting("How severe do you think it is? (Level 1/2/3/4)?\n");
                     cin >> urgencyLevel;
+                    
                     cout<<endl;
 
                     bool correctanswer = false;
@@ -164,11 +167,11 @@ int main() {
                     doctorList.printPatientsByUrgency();
                     if(correctanswer) scripting("You're doing an excellent job, Hospital Manager! Keep going and save more lives.\n");
                     cout<<endl;
-                    pressentertocontinue();
+                    
 
                 }
 
-                
+                pressentertocontinue();
                 // Display final points
                 scripting("You saved ");
                 if (points==0) scripting("no patient today, unfortunately.\n");
