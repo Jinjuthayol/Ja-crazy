@@ -2,6 +2,7 @@
 #define doctor_h
 
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include "patient.h"
 
@@ -103,12 +104,16 @@ public:
     }
 
     void printList() const {
-        Node* temp = head;
-        while (temp) {
-            cout << "Name: " << temp->doctor->getName() << ", Specialization: " << temp->doctor->getSpecialization() << endl;
-            temp = temp->next;
-        }
+    Node* temp = head;
+    cout << left << setw(20) << "Name" << " " << left << setw(30) << "Specialization" << endl;
+    cout << string(51, '-') << endl; 
+
+    while (temp) {
+        cout << left << setw(20) << temp->doctor->getName()
+             << " " << left << setw(20) << temp->doctor->getSpecialization() << endl;
+        temp = temp->next;
     }
+}
 
     Doctor* findDoctor(const string& doctorName) const {
         Node* temp = head;
@@ -119,6 +124,17 @@ public:
             temp = temp->next;
         }
         return nullptr; // Doctor not found
+    }
+
+    bool hasPatients() const {
+        Node* temp = head;
+        while (temp) {
+            if (!temp->doctor->isEmpty()) {
+                return true;
+            }
+            temp = temp->next;
+        }
+        return false;
     }
 
     void printPatientsByUrgency() const {

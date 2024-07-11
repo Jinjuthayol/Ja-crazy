@@ -55,12 +55,15 @@ int main() {
                 scripting("ARE YOU READY??");
                 pressentertocontinue();
                 scripting("First, Let's review the doctors information, they are the superheroes of our hospital!\n");
+                this_thread::sleep_for(chrono::milliseconds(1000));
+                cout<<endl;
                 
                 // Print doctor list
                 doctorList.printList();
                 pressentertocontinue();
 
                 scripting("\nAnd these are the urgency level:\n");
+                this_thread::sleep_for(chrono::milliseconds(1000));
 
                 cout << "Level 1: Fatal (Immediate attention needed)" << endl;
                 cout << "Level 2: Moderate (Needs attention soon)" << endl;
@@ -94,9 +97,9 @@ int main() {
 
                 // Process each patient
                 for (const auto& patient : patients) {
-                    std::this_thread::sleep_for(std::chrono::milliseconds(2500));
+                    this_thread::sleep_for(chrono::milliseconds(2500));
                     cout << "New Patient Alert!"<<endl;
-                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                    this_thread::sleep_for(chrono::milliseconds(1000));
                     cout<<patient.name << ", "<< patient.age << " years old, " << patient.sex << ",";
                     cout<<" comes to the hospital with " << patient.symptoms <<" symptoms";
                     pressentertocontinue();
@@ -111,7 +114,7 @@ int main() {
                     
 
                     // Input urgency level
-                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                    this_thread::sleep_for(chrono::milliseconds(1000));
                     cout<<endl;
                     scripting("How severe do you think it is? (Level 1/2/3/4)?\n");
                     cin >> urgencyLevel;
@@ -160,15 +163,22 @@ int main() {
                     }
                     else scripting("This doctor couldn't be found in the record this hospital.\n");
 
-                    scripting("Let's check the status of our patients so far.\nLooking at the list(s) of doctors patients\n");
-                    cout<<endl;
+                    if(!doctorList.hasPatients()) {
+                        scripting("There are no patients record yet.\n");
+                        cout<<endl;
+                        pressentertocontinue();
+                    }
 
-                    // Print all patients sorted by urgency for each doctor
-                    doctorList.printPatientsByUrgency();
-                    if(correctanswer) scripting("You're doing an excellent job, Hospital Manager! Keep going and save more lives.\n");
-                    cout<<endl;
-                    
+                    else{
+                        scripting("Let's check the status of our patients so far.\nby looking at the charts of doctors' patients.\n");
+                        cout<<endl;
 
+                        // Print all patients sorted by urgency for each doctor
+                        doctorList.printPatientsByUrgency();
+                        if(correctanswer) scripting("You're doing an excellent job, Hospital Manager! Keep going and save more lives.\n");
+                        pressentertocontinue();
+                    }
+        
                 }
 
                 pressentertocontinue();
