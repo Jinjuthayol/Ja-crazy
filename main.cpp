@@ -120,7 +120,7 @@ int main() {
                         scripting("Invalid input. Please enter a valid urgency level (1/2/3/4):\n");
                         cin >> urgencyLevel;
                     }
-cout << endl;
+                    cout << endl;
 
                     bool correctanswer = false;
 
