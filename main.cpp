@@ -115,8 +115,12 @@ int main() {
                     this_thread::sleep_for(chrono::milliseconds(1000));
                     cout<<endl;
                     scripting("How severe do you think it is? (Level 1/2/3/4)?\n");
-                    cin >> urgencyLevel;
-                    cout<<endl;
+                       cin >> urgencyLevel;
+                    while (urgencyLevel != 1 && urgencyLevel != 2 && urgencyLevel != 3 && urgencyLevel != 4) {
+                        scripting("Invalid input. Please enter a valid urgency level (1/2/3/4):\n");
+                        cin >> urgencyLevel;
+                    }
+cout << endl;
 
                     bool correctanswer = false;
 
