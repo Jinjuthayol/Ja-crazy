@@ -129,7 +129,7 @@ int main() {
                         correctanswer = true;
                     } else if (patient.name == "Best" && (doctorName == "Moore" || doctorName == "Taylor") && urgencyLevel == 1) {
                         correctanswer = true;
-                    } else if (patient.name == "New" && (doctorName == "Miller" || doctorName == "Wilson") && urgencyLevel == 1) {
+                    } else if (patient.name == "New" && (doctorName == "Miller" || doctorName == "Wilson") && urgencyLevel == 4) {
                         correctanswer = true;
                     } else if (patient.name == "Pat" && (doctorName == "Smith" || doctorName == "Johnson") && urgencyLevel == 1) {
                         correctanswer = true;
