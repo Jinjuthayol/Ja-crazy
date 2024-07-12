@@ -82,7 +82,7 @@ int main() {
                     {"KJ", 48, 'F', "Diabetic Ketoacidosis"},
                     {"Xandra", 6, 'F', "Bronchiolitis"},
                     {"Best", 57, 'M', "Retinal Detachment"},
-                    {"New", 62, 'M', "Heart attack"}, 
+                    {"New", 62, 'M', "Fever"}, 
                     {"Pat", 42, 'M', "Appendicitis"}, 
                     {"Heart", 3, 'M', "Acute Otitis Media"}, 
                     {"Hong", 30, 'F', "Ectopic Pregnancy"},
@@ -184,7 +184,7 @@ int main() {
                 else {
                     cout<<points;
                     if (points==1) scripting(" patient today!\n");
-                    else scripting(" patient today!\n");
+                    else scripting(" patients today!\n");
                 }
 
             scripting("Goodbye, Hospital Manager. Thanks for all your hard work. The hospital is in better shape because of you!\n");
