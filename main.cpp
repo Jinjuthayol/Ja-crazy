@@ -109,6 +109,13 @@ int main() {
                     cout<<endl;
                     scripting("Which doctor should this patient go to?\n");
                     cin >> doctorName;
+
+                    Doctor* selectedDoctor = doctorList.findDoctor(doctorName);
+                    while (!selectedDoctor) {
+                        scripting("This doctor couldn't be found in the record of this hospital. Please enter a valid doctor name:\n");
+                        cin >> doctorName;
+                    selectedDoctor = doctorList.findDoctor(doctorName);
+                    }
                     
 
                     // Input urgency level
@@ -147,7 +154,7 @@ int main() {
                         correctanswer = true;
                     }
 
-                    Doctor* selectedDoctor = doctorList.findDoctor(doctorName);
+                    
 
                     // If doctor exists
                     if (selectedDoctor) {
@@ -162,7 +169,7 @@ int main() {
                             points++; // Increment points for correct match
                         }
                     }
-                    else scripting("This doctor couldn't be found in the record this hospital.\n");
+                    
 
                     if(!doctorList.hasPatients()) {
                         scripting("There are no patients record yet.\n");
