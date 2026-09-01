@@ -9,8 +9,8 @@ and **how urgent** their case is. Match them well to save lives and earn points.
 Ten patients arrive one by one. For each patient you read their name, age, and
 symptom, then type the doctor who fits their specialization and give an urgency level
 from 1 to 4. Get both the doctor *and* the urgency right and you score a point. After
-each patient, every doctor's chart is printed with their patients sorted by urgency  
-—and at the end you find out how many patients you saved.
+each patient, every doctor's chart is printed with their patients sorted by urgency,  
+and at the end you find out how many patients you saved.
 
 Urgency levels:
 
@@ -30,11 +30,13 @@ You just need a C++ compiler (like `g++`).
 
 ## What this demonstrates
 
-It's a small data-structures showcase:
-
-- a **linked list** holds all the doctors,
-- each doctor keeps their own **linked list of patients, sorted by urgency**,
-- and a **binary search tree** stores the urgency levels.
+- **Object-oriented design:** the program is split into small, focused classes: Patient,
+  Doctor, Urgency, and the containers that hold them. Each doctor encapsulates its own patient list,
+  so the game logic just talks to the classes instead of managing the data directly.
+- **Data structures from scratch:** a linked list holds all the doctors, each doctor keeps a second
+  linked list of their patients sorted by urgency, and a binary search tree stores the urgency levels
+- **Console Interaction:** a typewriter-style text effect and a menu-driven loop read the player's doctor
+  and urgency choices, validate the input, and score each correct match.
 
 ## Project structure
 
