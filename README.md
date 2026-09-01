@@ -9,8 +9,8 @@ and **how urgent** their case is. Match them well to save lives and earn points.
 Ten patients arrive one by one. For each patient you read their name, age, and
 symptom, then type the doctor who fits their specialization and give an urgency level
 from 1 to 4. Get both the doctor *and* the urgency right and you score a point. After
-each patient, every doctor's chart is printed with their patients sorted by urgency —
-and at the end you find out how many patients you saved.
+each patient, every doctor's chart is printed with their patients sorted by urgency  
+—and at the end you find out how many patients you saved.
 
 Urgency levels:
 
@@ -28,7 +28,7 @@ make run    # plays the game
 
 You just need a C++ compiler (like `g++`).
 
-## Under the hood
+## What this demonstrates
 
 It's a small data-structures showcase:
 
@@ -36,13 +36,14 @@ It's a small data-structures showcase:
 - each doctor keeps their own **linked list of patients, sorted by urgency**,
 - and a **binary search tree** stores the urgency levels.
 
-## Files
+## Project structure
 
-| File | What's in it |
-|---|---|
-| `main.cpp` | the game loop and story |
-| `doctor.h` | the `Doctor` class + the doctor linked list |
-| `patient.h` | the `Patient` class |
-| `urgency.h` | the `Urgency` record |
-| `bst.h` | the urgency binary search tree |
-| `makefile` | build/run shortcuts |
+```
+Ja-crazy/
+├── main.cpp   # the game loop and story
+├── doctor.h       # the Doctor class + the doctor linked list
+├── patient.h         # the Patient class
+├── urgency.h             # the urgency record
+├── bst.h             # the urgency binary search tree
+└── makefile    # build/run shortcuts
+```
