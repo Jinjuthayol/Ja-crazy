@@ -1,4 +1,4 @@
-# Hospital Manager 🏥
+# Hospital Triage Mini Game
 
 A little terminal game written in C++. You play the new hospital manager: patients
 walk in one at a time with a symptom, and you decide **which doctor** they should see
@@ -14,10 +14,10 @@ and at the end you find out how many patients you saved.
 
 Urgency levels:
 
-- **1 — Fatal** (needs help immediately)
-- **2 — Moderate** (needs attention soon)
-- **3 — Low** (can wait a bit)
-- **4 — Minimal** (routine check-up)
+- **1: Fatal** (needs help immediately)
+- **2: Moderate** (needs attention soon)
+- **3: Low** (can wait a bit)
+- **4: Minimal** (routine check-up)
 
 ## Build & run
 
