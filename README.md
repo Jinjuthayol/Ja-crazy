@@ -49,3 +49,9 @@ Ja-crazy/
 ├── bst.h         # the urgency binary search tree
 └── makefile      # build/run shortcuts
 ```
+## Team
+6581147 Trinnaya Damrongpatharawat
+6581053 Jinjutha Yolsirivat 
+6581063 Sarum Suknijarun
+6581225 Krittapat Chumwattana 
+6581125 Chayuthwarat Tansthitaya 
