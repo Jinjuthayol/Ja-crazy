@@ -14,10 +14,10 @@ and at the end you find out how many patients you saved.
 
 Urgency levels:
 
-- **1: Fatal** (needs help immediately)
-- **2: Moderate** (needs attention soon)
-- **3: Low** (can wait a bit)
-- **4: Minimal** (routine check-up)
+  **1: Fatal** (needs help immediately)\
+  **2: Moderate** (needs attention soon)\
+  **3: Low** (can wait a bit)\
+  **4: Minimal** (routine check-up)
 
 ## Build & run
 
@@ -42,10 +42,10 @@ You just need a C++ compiler (like `g++`).
 
 ```
 Ja-crazy/
-├── main.cpp   # the game loop and story
-├── doctor.h       # the Doctor class + the doctor linked list
-├── patient.h         # the Patient class
-├── urgency.h             # the urgency record
-├── bst.h             # the urgency binary search tree
-└── makefile    # build/run shortcuts
+├── main.cpp      # the game loop and story
+├── doctor.h      # the Doctor class + the doctor linked list
+├── patient.h     # the Patient class
+├── urgency.h     # the urgency record
+├── bst.h         # the urgency binary search tree
+└── makefile      # build/run shortcuts
 ```
